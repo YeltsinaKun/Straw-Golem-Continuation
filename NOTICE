@@ -1,0 +1,20 @@
+Straw Golem Relaunched
+
+Relaunched adapts the farming golem for Minecraft 26.2 on Fabric with a Java
+model and Java keyframe animations. This development snapshot is dated
+2026-11-24.
+
+Straw Golem Updated by NoHero (HeroBrianMack) is licensed under AGPL-3.0-only.
+The released upstream source contains the straw hat texture and the particle
+files fly.png, food.png, snow.png, snowfall.png, and snowfall.png.mcmeta
+included in Relaunched.
+https://github.com/HeroBrianMack/RE-Strawgolem/tree/b3961aaea843d57e89faee6f5429f585d0c2c4e6
+https://modrinth.com/mod/straw-golem-rebaled-updated
+
+The upstream project credits Fr3nderman for the original model and
+CommodoreThrawn for the preliminary design. The straw hat and fly particle
+textures also appear in Straw Golem Rebaled by CommodoreThrawn.
+https://github.com/godemperoroftheworld/strawgolem
+
+The project was initialized from Fabric Example Mod, available under CC0-1.0.
+https://github.com/FabricMC/fabric-example-mod

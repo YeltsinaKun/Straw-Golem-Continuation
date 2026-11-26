@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "straw-golem-relaunched",
+	"version": "${version}",
+	"name": "Straw Golem Relaunched",
+	"description": "Straw golem đã trở lại trên 26.2!",
+	"authors": [
+		"Xubache1407"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/YeltsinaKun/straw-golem-relaunched"
+	},
+	"license": "AGPL-3.0-only",
+	"icon": "assets/straw-golem-relaunched/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"xubache.com.strawgolem.StrawGolemRelaunched"
+		],
+		"client": [
+			"xubache.com.strawgolem.client.StrawGolemRelaunchedClient"
+		],
+		"fabric-datagen": [
+			"xubache.com.strawgolem.client.StrawGolemRelaunchedDataGenerator"
+		]
+	},
+	"mixins": [
+		"straw-golem-relaunched.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

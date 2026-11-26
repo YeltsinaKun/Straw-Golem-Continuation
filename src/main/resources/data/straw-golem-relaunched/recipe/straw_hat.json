@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:wheat"
+  },
+  "result": {
+    "id": "straw-golem-relaunched:straw_hat",
+    "count": 1
+  }
+}
