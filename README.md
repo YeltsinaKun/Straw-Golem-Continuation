@@ -1,87 +1,74 @@
-# Straw Golem Continuation
+# Straw Golem Relaunched
 
-Straw Golem Continuation tiếp nối bản Straw Golem của **t2pellet** cho **Minecraft Java 26.2 trên Fabric**. Đặt một kiện rơm bên ruộng, gắn bí ngô khắc lên đó rồi chỉ cho golem chiếc rương của bạn. Nó sẽ tự tìm cây chín, thu hoạch, trồng lại và mang nông sản về. Nếu thấy nó ôm cả quả dưa hấu trên đầu, đó là chuyến giao hàng tiếp theo.
+Có hôm ra thăm ruộng, bạn sẽ thấy cả quả dưa hấu đang lững thững đi về phía rương. Nhìn xuống dưới một chút sẽ thấy chú golem rơm đang đội nó trên đầu. Cậu chàng này biết gặt lúa, trồng lại cà rốt, hái quả mọng và mang nông sản về cho bạn. Chỉ có điều, nếu định cho nó làm hàng xóm với mấy con bò thì nhớ dựng hàng rào nhé.
 
-**Bản đang phát triển:** `0.1.0-beta.1+26.2` · **Fabric Loader:** `0.20.1` · **Fabric API dùng để build:** `0.161.0+26.2` · **Java:** `25`
+Bản mod dành cho **Minecraft Java 26.2 trên Fabric**. Để chơi, cài Fabric Loader rồi bỏ Fabric API và file JAR của mod vào thư mục `mods/`.
 
-## Bắt đầu trong Survival
+## Đón golem về ruộng
 
-1. **Tạo golem.** Đặt một kiện rơm, sau đó đặt bí ngô khắc chạm một trong sáu mặt của kiện. Khi golem xuất hiện, hai khối được tiêu thụ.
-2. **Giao rương.** Để trống tay chính, giữ **Shift** rồi nhấp phải vào golem. Vẫn để tay chính trống, giữ **Shift** và nhấp phải vào rương. Chừa lối đi để golem có thể tới gần.
-3. **Để cây chín.** Thử với một luống lúa mì, cà rốt, khoai tây hoặc củ dền. Golem bắt đầu tìm cây khi tay trống. Nếu rương chỉ nhận được một phần nông sản, nó giữ phần còn lại trên tay và tiếp tục tìm chỗ cất.
+1. Đặt một **khối rơm** bên ruộng rồi đặt **bí ngô khắc** chạm vào khối rơm. Đặt trên đầu cho có dáng người rơm cũng được, gắn bên hông cũng được. Cả sáu mặt đều dùng được, miễn là bạn đặt bí ngô sau.
+2. Để trống tay chính, giữ **Shift** rồi nhấp phải vào golem. Vẫn để tay trống và giữ Shift, nhấp phải vào chiếc rương bạn muốn nó mang đồ về. Dùng thùng gỗ cũng được. Nhớ chừa lối cho đôi chân ngắn của nó đi tới.
+3. Thử cho nó một luống lúa mì, cà rốt, khoai tây hoặc củ dền đã chín. Khi hai tay còn trống, nó sẽ tự tìm cây để gặt. Đến lúc ôm đầy nông sản, nó quay về cất rồi mới ra ruộng làm tiếp.
 
-## Trên ruộng
+## Gặt xong thì lấy gì trồng lại?
 
-- **Gặt và trồng lại.** Theo mặc định, golem dùng hạt lúa mì, hạt củ dền, cà rốt hoặc khoai tây để trồng lại cây tương ứng. Nếu thiếu vật phẩm trồng, ô đất sẽ để trống. Golem còn hái quả mọng ngọt và thu hoạch bí ngô, dưa hấu mọc từ thân cây. Dưa hấu được mang về nguyên khối.
-- **Nhặt đồ.** Golem mang mỗi lần một chồng vật phẩm. Nó có thể nhặt nông sản rơi và giữ riêng tối đa bốn hạt mỗi loại cho lúa mì, củ dền, dưa hấu và bí ngô.
+Cứ lấy một cây cà rốt cho đúng một chồng **4 củ** làm ví dụ. Chỉnh `vanilla_harvesting` trong config sẽ quyết định bạn nhận được mấy củ từ cây ấy.
 
-### Golem chọn rương nào?
+- **Bật (`true`, mặc định).** Golem lấy 1 củ cắm lại xuống đất rồi mang **3 củ** về rương. Khoai tây cũng vậy. Với lúa mì và củ dền, nó lấy một hạt từ vụ vừa gặt để gieo. Nếu lần đó chẳng được hạt nào, nó lấy hạt giống đã để dành. Hết cả giống thì ô đất ấy sẽ để trống.
+- **Tắt (`false`).** Golem mang về **cả 4 củ**, trên luống vẫn có cây con. Mỗi lần gặt kiểu này, nó chỉ lấy một chồng đồ. Chẳng hạn, nếu cây lúa cho cả lúa mì lẫn hạt giống và golem lấy chồng lúa mì, phần hạt sẽ không rơi trên ruộng hay được cất làm giống.
 
-Đầu mỗi chuyến cất đồ, golem thử lần lượt:
+Bí ngô và dưa hấu thì đơn giản hơn. Ở cả hai chế độ, golem hái quả đã mọc từ thân rồi để thân cây ở đó cho ra lứa sau. Riêng dưa hấu, bạn sẽ nhận được nguyên quả.
 
-1. Rương bạn chỉ định.
-2. Rương mà golem vừa giao đồ thành công.
-3. Các rương hoặc kho khác quanh golem.
+## Nó mang đồ về đâu?
 
-Nếu rương đầy, bị phá hoặc không tới được, golem thử lựa chọn tiếp theo. Khi hết chỗ cất, nó giữ đồ trên tay và chờ. Nếu bạn đổi rương chỉ định lúc golem đang đi giao, nó dùng thứ tự mới từ chuyến kế tiếp.
+Golem nhớ chiếc rương bạn chỉ cho nó. Nếu rương đầy hoặc bị phá, nó thử lại chỗ vừa giao đồ thành công, sau đó mới tìm quanh mình. Rương chỉ còn chỗ cho 2 củ thì nó cất 2 củ, số còn lại vẫn cầm theo. Bạn đổi rương giữa đường cũng được, nó sẽ dùng rương mới từ chuyến sau.
 
-### Hạt dư đi đâu?
+Có lúc bạn thấy nó ôm đồ mãi mà ruộng bên cạnh đã chín hết. Thử dọn vài ô trong rương hoặc đặt thêm thùng gỗ ở chỗ nó đi tới được. Chừng nào chưa tìm được chỗ cất, cậu ta vẫn còn bận ôm chỗ nông sản ấy mà ngẫm nghĩ về cuộc đời.
 
-Khi bật `vanilla_harvesting`, golem **cất nông sản trước, xử lý hạt dư sau**. Ví dụ, nếu đang giữ 3 hạt lúa mì và gặt thêm 4 hạt, nó dùng 1 hạt để trồng lại, giữ 4 hạt làm giống và còn 2 hạt dư. Sau khi cất lúa mì, nó mới cầm 2 hạt đó lên tay.
+### Còn hạt dư thì sao?
 
-- **Mặc định**, golem mang hạt dư về rương.
-- **Khi bật `auto_compost_seeds`**, golem ưu tiên thùng ủ mà nó có thể tới được. Nếu thiếu thùng phù hợp, nó mang hạt về rương. Nếu đang mang 5 hạt và thùng bị phá sau khi đã dùng 2, nó đem đúng 3 hạt còn lại đi cất.
-- **Khi hết chỗ nhận**, golem giữ hạt trên tay và tạm ngừng làm nông. Bạn có thể dọn chỗ trong rương hoặc đặt thêm rương ở nơi nó tới được để nó làm tiếp. Trong lúc chờ, nó vẫn né động vật và có thể chạy hoảng.
+Khi bật `vanilla_harvesting`, golem để dành tối đa 4 hạt giống mỗi loại. Giả sử nó đang có 3 hạt lúa mì và gặt thêm được 4 hạt nữa. Nó gieo lại 1 hạt, để dành thêm 1 hạt cho tròn 4, vậy là dư 2. Nó mang lúa mì về trước, cất xong mới quay sang lo cho 2 hạt đó.
 
-Nếu bạn lưu và thoát giữa chuyến, golem giữ đồ trên tay, hạt dự trữ và hạt dư. Khi mở lại thế giới, nó có thể tiếp tục chuyến đang làm.
+Bình thường hạt dư cũng về rương. Muốn tận dụng chúng làm bột xương, bạn có thể bật `auto_compost_seeds` rồi đặt một thùng ủ gần ruộng. Golem sẽ đem hạt đi ủ nếu tới được thùng. Nếu chẳng tìm được thùng nào phù hợp, nó lại mang hạt về cất.
 
-## Chăm sóc golem
+## Chăm chú golem của bạn
 
-| Tình huống | Điều xảy ra |
-| --- | --- |
-| Golem bị thương | Golem mặc định có 6 tim. Cầm lúa mì (`minecraft:wheat`) ở tay chính rồi nhấp phải để hồi tối đa 1,5 tim. |
-| Trời mưa hoặc rét | Golem run khi bị mưa tạt hoặc ở nơi đủ lạnh để có tuyết. Mái che và mũ rơm giúp nó tránh mưa. Khi trời rét, nó vẫn run dù đội mũ. |
-| Làm mũ rơm | Trên bàn chế tạo, đặt một lúa mì ở ô giữa hàng trên và ba lúa mì ở hàng kế tiếp. Cầm mũ ở tay chính rồi nhấp phải vào golem. |
-| Có động vật ở gần | Bò, cừu, bò nấm, ngựa, lừa, la, llama và llama thương nhân có thể đến gặm golem trong phạm vi 6 block. Golem có thể né và giữ đồ nếu thấy con vật ở phía trước, con vật có đường tới nó và nó tìm được đường thoát. |
-| Golem chạy hoảng | Một cú gặm trúng gây 0,5 điểm máu và có thể khiến golem chạy hoảng. Khi bắt đầu chạy hoảng, nó chỉ quăng chồng đồ đang cầm, kể cả khi đang cháy hoặc ở trong dung nham. Lửa, lửa trại và dung nham gây gấp đôi sát thương. |
-| Golem chết | Đồ còn trên tay, hạt giống dự trữ, hạt dư chờ giao và các chồng đồ đang chờ thả đều rơi tại chỗ. |
+Golem rơm mặc định có **6 tim**. Nếu thấy rơm trên người nó đã sờn sau một trận rượt đuổi ngoài ruộng, cầm **bó rơm** ở tay chính rồi nhấp phải vào nó. Mỗi bó hồi được tối đa **1,5 tim**. Còn muốn chú golem nhà mình khỏe hơn từ đầu, bạn có thể chỉnh máu tối đa trong config.
 
-**Ngoại hình theo máu.** Khi còn từ 6 HP trở xuống, golem trông cũ đi. Từ 2 HP trở xuống, nó dùng texture rất cũ. Hai ngưỡng này luôn áp dụng, kể cả khi tắt tuổi thọ. Cho ăn lúa mì có thể giúp golem trông khỏe lại.
+Tuổi thọ mặc định tắt. Nếu bật `lifespan_enabled`, rơm sẽ mòn dần, golem mất máu theo tuổi rồi cuối cùng cũng già đi mà chết. Ở chỗ khô, với cấu hình mặc định và ruộng được tải liên tục, một chú khỏe mạnh sống khoảng 80 phút nếu bạn không đắp thêm rơm cho nó. Bị đánh hay bị gặm thì nó có thể chết sớm hơn.
 
-**Tuổi thọ là tùy chọn, mặc định tắt.** Khi bật, golem sống khoảng 80 phút ở nơi khô nếu game chạy ở 20 tick/giây và golem được tải liên tục. Rơm mòn dần làm giảm máu thật. Với 12 HP và tuổi thọ 80 phút, golem mất 1 HP mỗi 6 phút 40 giây ở nơi khô. Bị đánh làm mất thêm máu ngay và có thể khiến nó chết sớm. Một lúa mì hồi tối đa 3 HP và bù 20 phút tuổi thọ với cấu hình này. Khi đắp lúa đến đầy máu, tuổi thọ được khôi phục đầy. Mưa trực tiếp khi đầu trần hoặc ngâm nước làm rơm tích ẩm. Khi đủ ẩm, golem già nhanh gấp đôi. Đưa nó về chỗ khô để độ ẩm giảm dần. Golem giữ tuổi, độ ẩm và mũ khi bạn mở lại thế giới.
+Khi bật tuổi thọ, đứng trong nước hoặc đội mưa lâu sẽ làm rơm tích ẩm. Một khi đủ ướt, golem già nhanh gấp đôi. Dẫn nó vào chỗ khô thì rơm sẽ ráo dần. Nếu hay gặp mưa giữa buổi gặt, cho nó đội một chiếc **nón rơm**. Nón che được mưa, còn lội xuống nước thì nó vẫn ướt như thường.
 
-## Cài đặt và cấu hình
+Và nhớ để mắt tới mấy con bò, cừu trong trại. Với bạn thì đây là người làm vườn, với chúng thì đây là một bữa buffet biết đi. Nếu bị gặm đến hoảng, golem có thể quăng cả chồng đồ đang cầm rồi bỏ chạy.
 
-Cài Fabric Loader cho Minecraft Java 26.2. Đặt Fabric API dành cho 26.2 và JAR chạy của Straw Golem Continuation vào thư mục `mods/`. Nếu chơi trên máy chủ riêng, cài mod và Fabric API cho cả máy chủ lẫn máy người chơi. Bạn có thể tự tạo JAR từ mã nguồn theo hướng dẫn bên dưới.
+## Chỉnh sửa theo ý bạn
 
-Sau lần chạy đầu, chỉnh `config/strawgolem.json` trong thư mục game hoặc máy chủ rồi khởi động lại. Các tùy chọn thường dùng gồm:
+Chạy game lần đầu để mod tạo file `config/strawgolem.json`. Mở file, chỉnh mục bạn muốn rồi khởi động lại game hoặc máy chủ. Ba mục đầu trong bảng nằm trong nhóm `attributes`.
 
-| Tùy chọn | Mặc định | Tác dụng |
+| Mục | Mặc định | Dùng để chỉnh gì? |
 | --- | --- | --- |
-| `vanilla_harvesting` | `true` | Dùng vật phẩm để trồng lại. Đặt `false` để gặt theo chế độ đơn giản, chọn một chồng sản phẩm và đặt lại cây mà không dùng hạt. Dưa hấu vẫn cho nguyên khối. |
-| `auto_compost_seeds` | `false` | Cho phép ủ hạt và thu bột xương. |
-| `lifespan_enabled`, `lifespan_seconds` | `false`, `4800` | Bật tuổi thọ và đặt thời gian sống cơ bản theo giây. |
-| `harvest_horizontal_range` | `24` | Bán kính ngang để chọn cây. |
-| `harvest_scan_vertical_range`, `harvest_target_vertical_range` | `12`, `3` | Quét lên và xuống tối đa 12 block, chọn cây chênh cao tối đa 3 block. |
-| `deposit_horizontal_range`, `deposit_vertical_range` | `32`, `8` | Giới hạn tìm kho tự do trên mỗi trục ngang và theo chiều cao. |
+| `attributes.max_health` | `12` | Máu tối đa, tính theo điểm máu. Cứ 2 điểm là 1 tim. |
+| `attributes.movement_speed` | `0.25` | Tốc độ di chuyển của golem. |
+| `attributes.wander_max_distance` | `24` | Khoảng cách golem đi lang thang lúc rảnh. |
+| `vanilla_harvesting` | `true` | Bật để dùng hạt hoặc củ khi trồng lại. Tắt để cây mọc lại miễn phí và chỉ lấy một chồng đồ mỗi lần gặt. |
+| `auto_compost_seeds` | `false` | Bật để golem mang hạt dư đi ủ và thu bột xương. |
+| `lifespan_enabled` | `false` | Bật để golem già đi theo thời gian. |
+| `lifespan_seconds` | `4800` | Tuổi thọ cơ bản ở chỗ khô, tính bằng giây. |
+| `harvest_horizontal_range` | `24` | Bán kính tìm cây chín quanh golem, tính bằng block. |
+| `harvest_scan_vertical_range` | `12` | Golem tìm cây bao nhiêu block lên trên và xuống dưới. |
+| `harvest_target_vertical_range` | `3` | Cây được chọn để gặt có thể cao hoặc thấp hơn golem bao nhiêu block. |
+| `deposit_horizontal_range`, `deposit_vertical_range` | `32`, `8` | Khi tự tìm chỗ cất đồ, golem tìm tối đa 32 block theo mỗi trục ngang và 8 block lên hoặc xuống. |
 
-## Build từ mã nguồn
+## Ghi công & Giấy phép
 
-Cài **JDK 25**, mở terminal ở thư mục chứa `gradlew` và chạy lệnh tương ứng:
+Dự án này là bản port không chính thức của **Straw Golem Rebaled**, được phát triển ban đầu bởi **CommodoreThrawn**.
 
-| Mục đích | Windows PowerShell | Linux / macOS |
-| --- | --- | --- |
-| Build JAR | `.\gradlew.bat build` | `sh ./gradlew build` |
-| Chạy client phát triển | `.\gradlew.bat runClient` | `sh ./gradlew runClient` |
+- Mod gốc: https://www.curseforge.com/minecraft/mc-mods/straw-golem-reborn
+- Mã nguồn gốc: https://github.com/godemperoroftheworld/strawgolem
+- Mã nguồn và tài nguyên gốc thuộc bản quyền của các tác giả tương ứng.
+- Chuyển phiên bản, cập nhật tương thích và phát triển bổ sung bởi **Xuân Bách Trần**.
 
-Sau khi build, dùng `build/libs/straw-golem-relaunched-0.1.0-beta.1+26.2.jar` để chơi. File có đuôi `-sources.jar` chứa mã nguồn.
+Dự án này hoạt động độc lập, không đại diện cho tác giả gốc và chưa được tác giả gốc xác nhận là bản port chính thức.
 
-## Báo lỗi
+Dự án được phân phối theo **Giấy phép Công cộng GNU Affero phiên bản 3 (AGPLv3)**. Xem [LICENSE](LICENSE) để biết đầy đủ điều khoản.
 
-Hãy cho biết phiên bản Minecraft, Fabric Loader, Fabric API và mod. Với lỗi làm nông, mô tả loại cây, đồ trên tay golem, vị trí rương và các bước để thấy lại lỗi. Với lỗi hoạt ảnh, ảnh chụp hoặc video ngắn sẽ giúp tái hiện. [GitHub Issues](https://github.com/YeltsinaKun/straw-golem-relaunched/issues)
-
-## Giấy phép và ghi công
-
-Straw Golem Relaunched là bản chuyển thể cộng đồng dành cho Fabric 26.2, phát triển bởi **Xubache1407**. Dự án dùng giấy phép **AGPL-3.0-only**. [Giấy phép của repository](LICENSE)
-
-Cảm ơn **t2pellet** vì bản Straw Golem mà dự án này tiếp nối, **Fr3nderman** vì model gốc và **CommodoreThrawn** vì thiết kế ban đầu. Xem [NOTICE](NOTICE) để biết nguồn các tài nguyên đi kèm. [Straw Golem 2.2.0](https://modrinth.com/mod/straw-golem/version/2.2.0)
