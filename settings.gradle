@@ -9,5 +9,5 @@ pluginManagement {
 	}
 }
 
-// Should match your modid
-rootProject.name = 'straw-golem-relaunched'
+// Sets the base name of the Gradle artifacts.
+rootProject.name = 'straw-golem-continuolation'
