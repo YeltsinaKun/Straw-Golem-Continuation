@@ -2,8 +2,8 @@
 	"schemaVersion": 1,
 	"id": "straw-golem-relaunched",
 	"version": "${version}",
-	"name": "Straw Golem Relaunched",
-	"description": "Straw golem đã trở lại trên 26.2!",
+	"name": "Straw Golem Continuolation",
+	"description": "Straw golem đã trở lại trên 26.1.2!",
 	"authors": [
 		"Xubache1407"
 	],
@@ -30,7 +30,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.20.1",
-		"minecraft": "~26.2",
+		"minecraft": "26.1.2",
 		"java": ">=25",
 		"fabric-api": "*"
 	}

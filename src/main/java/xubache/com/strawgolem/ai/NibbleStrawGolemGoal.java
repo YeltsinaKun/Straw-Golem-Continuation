@@ -3,7 +3,6 @@ package xubache.com.strawgolem.ai;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.ClipContext;
@@ -11,6 +10,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import xubache.com.strawgolem.Entity.StrawGolemEntity;
+import xubache.com.strawgolem.mixin.MobGoalSelectorAccessor;
 
 import java.util.Comparator;
 import java.util.EnumSet;
@@ -22,9 +22,9 @@ public final class NibbleStrawGolemGoal extends Goal {
     private static final float BITE_DAMAGE = 0.5F;
 
     private static final Set<EntityType<?>> NIBBLING_ANIMALS = Set.of(
-            EntityTypes.COW, EntityTypes.SHEEP, EntityTypes.MOOSHROOM,
-            EntityTypes.HORSE, EntityTypes.DONKEY, EntityTypes.MULE,
-            EntityTypes.LLAMA, EntityTypes.TRADER_LLAMA
+            EntityType.COW, EntityType.SHEEP, EntityType.MOOSHROOM,
+            EntityType.HORSE, EntityType.DONKEY, EntityType.MULE,
+            EntityType.LLAMA, EntityType.TRADER_LLAMA
     );
 
     private final PathfinderMob animal;
@@ -43,7 +43,7 @@ public final class NibbleStrawGolemGoal extends Goal {
                 return;
             }
 
-            var goals = animal.getGoalSelector();
+            var goals = ((MobGoalSelectorAccessor) animal).strawgolem$getGoalSelector();
             if (goals.getAvailableGoals().stream()
                     .noneMatch(goal -> goal.getGoal() instanceof NibbleStrawGolemGoal)) {
                 goals.addGoal(5, new NibbleStrawGolemGoal(animal));

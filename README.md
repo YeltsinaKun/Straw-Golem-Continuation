@@ -1,8 +1,8 @@
-# Straw Golem Relaunched
+# Straw Golem Continuolation
 
 Có hôm ra thăm ruộng, bạn sẽ thấy cả quả dưa hấu đang lững thững đi về phía rương. Nhìn xuống dưới một chút sẽ thấy chú golem rơm đang đội nó trên đầu. Cậu chàng này biết gặt lúa, trồng lại cà rốt, hái quả mọng và mang nông sản về cho bạn. Chỉ có điều, nếu định cho nó làm hàng xóm với mấy con bò thì nhớ dựng hàng rào nhé.
 
-Bản mod dành cho **Minecraft Java 26.2 trên Fabric**. Để chơi, cài Fabric Loader rồi bỏ Fabric API và file JAR của mod vào thư mục `mods/`.
+Bản mod dành cho **Minecraft Java 26.1.2 trên Fabric**. Để chơi, cài Fabric Loader rồi bỏ Fabric API và file JAR của mod vào thư mục `mods/`.
 
 ## Đón golem về ruộng
 

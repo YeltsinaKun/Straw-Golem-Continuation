@@ -3,6 +3,7 @@
 	"package": "xubache.com.strawgolem.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
+		"MobGoalSelectorAccessor",
 		"StrawGolemSummonMixin"
 	],
 	"injectors": {
