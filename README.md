@@ -2,11 +2,7 @@
 
 Có hôm ra thăm ruộng, bạn sẽ thấy cả quả dưa hấu đang lững thững đi về phía rương. Nhìn xuống dưới một chút sẽ thấy chú golem rơm đang đội nó trên đầu. Cậu chàng này biết gặt lúa, trồng lại cà rốt, hái quả mọng và mang nông sản về cho bạn. Chỉ có điều, nếu định cho nó làm hàng xóm với mấy con bò thì nhớ dựng hàng rào nhé.
 
-Bản mod dành cho **Minecraft Java 26.1.2 trên Fabric**. Để chơi, cài Fabric Loader rồi bỏ Fabric API và file JAR của mod vào thư mục `mods/`.
-
-Mod ID hiện là `straw-golem-continuation`. World dùng bản có ID `straw-golem-relaunched` cần được sao lưu trước khi thử bản này. Golem và vật phẩm đã lưu với ID cũ cần chuyển ID riêng để bản mới đọc được.
-
-## Đón golem về ruộng
+## Triệu hồi một con Golem rơm
 
 1. Đặt một **khối rơm** bên ruộng rồi đặt **bí ngô khắc** chạm vào khối rơm. Đặt trên đầu cho có dáng người rơm cũng được, gắn bên hông cũng được. Cả sáu mặt đều dùng được, miễn là bạn đặt bí ngô sau.
 2. Để trống tay chính, giữ **Shift** rồi nhấp phải vào golem. Vẫn để tay trống và giữ Shift, nhấp phải vào chiếc rương bạn muốn nó mang đồ về. Dùng thùng gỗ cũng được. Nhớ chừa lối cho đôi chân ngắn của nó đi tới.
@@ -19,13 +15,13 @@ Cứ lấy một cây cà rốt cho đúng một chồng **4 củ** làm ví d�
 - **Bật (`true`, mặc định).** Golem lấy 1 củ cắm lại xuống đất rồi mang **3 củ** về rương. Khoai tây cũng vậy. Với lúa mì và củ dền, nó lấy một hạt từ vụ vừa gặt để gieo. Nếu lần đó chẳng được hạt nào, nó lấy hạt giống đã để dành. Hết cả giống thì ô đất ấy sẽ để trống.
 - **Tắt (`false`).** Golem mang về **cả 4 củ**, trên luống vẫn có cây con. Mỗi lần gặt kiểu này, nó chỉ lấy một chồng đồ. Chẳng hạn, nếu cây lúa cho cả lúa mì lẫn hạt giống và golem lấy chồng lúa mì, phần hạt sẽ không rơi trên ruộng hay được cất làm giống.
 
-Bí ngô và dưa hấu thì đơn giản hơn. Ở cả hai chế độ, golem hái quả đã mọc từ thân rồi để thân cây ở đó cho ra lứa sau. Riêng dưa hấu, bạn sẽ nhận được nguyên quả.
+Ở cả hai chế độ, golem khi thu hoạch bí ngô và dưa hấu đều thu về dạng block.
 
-## Nó mang đồ về đâu?
+## Chỉ định rương cho golem
 
-Golem nhớ chiếc rương bạn chỉ cho nó. Nếu rương đầy hoặc bị phá, nó thử lại chỗ vừa giao đồ thành công, sau đó mới tìm quanh mình. Rương chỉ còn chỗ cho 2 củ thì nó cất 2 củ, số còn lại vẫn cầm theo. Bạn đổi rương giữa đường cũng được, nó sẽ dùng rương mới từ chuyến sau.
+Mặc dù golem rơm có chiếc đầu khá nhỏ, nhưng nó vẫn nhớ chiếc rương mà bạn chỉ cho nó. Nếu rương đầy hoặc bị phá, nó thử lại chỗ vừa giao đồ thành công, sau đó mới tìm rương khác xung quanh nó.
 
-Có lúc bạn thấy nó ôm đồ mãi mà ruộng bên cạnh đã chín hết. Thử dọn vài ô trong rương hoặc đặt thêm thùng gỗ ở chỗ nó đi tới được. Chừng nào chưa tìm được chỗ cất, cậu ta vẫn còn bận ôm chỗ nông sản ấy mà ngẫm nghĩ về cuộc đời.
+Có lúc bạn thấy nó ôm đồ mãi mà ruộng bên cạnh đã chín hết. Lúc đó hãy thử dọn vài ô trong rương hoặc đặt thêm thùng gỗ ở chỗ nó đi tới được. Chừng nào chưa tìm được chỗ cất, cậu ta vẫn còn bận ôm chỗ nông sản ấy mà ngẫm nghĩ về lí do cậu ta tồn tại trên đời.
 
 ### Còn hạt dư thì sao?
 
@@ -35,11 +31,11 @@ Bình thường hạt dư cũng về rương. Muốn tận dụng chúng làm b�
 
 ## Chăm chú golem của bạn
 
-Golem rơm mặc định có **6 tim**. Nếu thấy rơm trên người nó đã sờn sau một trận rượt đuổi ngoài ruộng, cầm **bó rơm** ở tay chính rồi nhấp phải vào nó. Mỗi bó hồi được tối đa **1,5 tim**. Còn muốn chú golem nhà mình khỏe hơn từ đầu, bạn có thể chỉnh máu tối đa trong config.
+Golem rơm mặc định có **6 tim**. Nếu thấy rơm trên người nó đã sờn sau một trận rượt đuổi ngoài ruộng, cầm **bó rơm** ở tay chính rồi nhấp phải vào nó. Mỗi bó hồi được tối đa **1,5 tim**.
 
-Tuổi thọ mặc định tắt. Nếu bật `lifespan_enabled`, rơm sẽ mòn dần, golem mất máu theo tuổi rồi cuối cùng cũng già đi mà chết. Ở chỗ khô, với cấu hình mặc định và ruộng được tải liên tục, một chú khỏe mạnh sống khoảng 80 phút nếu bạn không đắp thêm rơm cho nó. Bị đánh hay bị gặm thì nó có thể chết sớm hơn.
+Tuổi thọ mặc định tắt. Nếu `lifespan_enabled: true`, rơm sẽ mòn dần, golem mất máu theo tuổi rồi cuối cùng cũng già đi mà chết. Ở chỗ khô, với cấu hình mặc định và ruộng được tải liên tục, một chú khỏe mạnh sống khoảng 80 phút nếu bạn không đắp thêm rơm cho nó. Bị đánh hay bị bò gặm thì nó có thể chết sớm hơn.
 
-Khi bật tuổi thọ, đứng trong nước hoặc đội mưa lâu sẽ làm rơm tích ẩm. Một khi đủ ướt, golem già nhanh gấp đôi. Dẫn nó vào chỗ khô thì rơm sẽ ráo dần. Nếu hay gặp mưa giữa buổi gặt, cho nó đội một chiếc **nón rơm**. Nón che được mưa, còn lội xuống nước thì nó vẫn ướt như thường.
+Khi `lifespan_enabled: true`, đứng trong nước hoặc đội mưa lâu sẽ làm rơm tích ẩm. Một khi đủ ướt, golem già nhanh gấp đôi. Dẫn nó vào chỗ khô thì rơm sẽ ráo dần. Nếu hay gặp mưa giữa buổi gặt, cho nó đội một chiếc **nón rơm**. Nón che được mưa, còn lội xuống nước thì nó vẫn ướt như thường.
 
 Và nhớ để mắt tới mấy con bò, cừu trong trại. Với bạn thì đây là người làm vườn, với chúng thì đây là một bữa buffet biết đi. Nếu bị gặm đến hoảng, golem có thể quăng cả chồng đồ đang cầm rồi bỏ chạy.
 
@@ -63,14 +59,9 @@ Chạy game lần đầu để mod tạo file `config/strawgolem.json`. Mở fil
 
 ## Ghi công & Giấy phép
 
-Dự án này là bản port không chính thức của **Straw Golem Rebaled**, được phát triển ban đầu bởi **CommodoreThrawn**.
+**Straw Golem Continuation** được phát triển độc lập bởi **Xubache1407**. Mã nguồn của bản mod này được xây dựng riêng cho dự án.
 
-- Mod gốc: https://www.curseforge.com/minecraft/mc-mods/straw-golem-reborn
-- Mã nguồn gốc: https://github.com/godemperoroftheworld/strawgolem
-- Mã nguồn và tài nguyên gốc thuộc bản quyền của các tác giả tương ứng.
-- Chuyển phiên bản, cập nhật tương thích và phát triển bổ sung bởi **Xuân Bách Trần**.
-
-Dự án này hoạt động độc lập, không đại diện cho tác giả gốc và chưa được tác giả gốc xác nhận là bản port chính thức.
+Dự án lấy cảm hứng từ **Straw Golem Rebaled** của **CommodoreThrawn** và sử dụng lại một số texture từ bản mod đó. Bản quyền các texture được sử dụng lại thuộc về các tác giả tương ứng. [Straw Golem Rebaled trên CurseForge](https://www.curseforge.com/minecraft/mc-mods/straw-golem-reborn)
 
 Dự án được phân phối theo **Giấy phép Công cộng GNU Affero phiên bản 3 (AGPLv3)**. Xem [LICENSE](LICENSE) để biết đầy đủ điều khoản.
 
