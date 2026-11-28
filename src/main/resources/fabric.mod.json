@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"xubache.com.strawgolem.StrawGolemRelaunched"
+			"xubache.com.strawgolem.StrawGolemContinuation"
 		],
 		"client": [
-			"xubache.com.strawgolem.client.StrawGolemRelaunchedClient"
+			"xubache.com.strawgolem.client.StrawGolemContinuationClient"
 		],
 		"fabric-datagen": [
-			"xubache.com.strawgolem.client.StrawGolemRelaunchedDataGenerator"
+			"xubache.com.strawgolem.client.StrawGolemContinuationDataGenerator"
 		]
 	},
 	"mixins": [

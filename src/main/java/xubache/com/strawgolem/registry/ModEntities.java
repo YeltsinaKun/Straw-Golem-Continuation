@@ -8,14 +8,14 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import xubache.com.strawgolem.Entity.StrawGolemEntity;
-import xubache.com.strawgolem.StrawGolemRelaunched;
+import xubache.com.strawgolem.StrawGolemContinuation;
 
 public final class ModEntities {
 
     private static final ResourceKey<EntityType<?>> STRAW_GOLEM_KEY =
             ResourceKey.create(
                     Registries.ENTITY_TYPE,
-                    StrawGolemRelaunched.id("straw_golem")
+                    StrawGolemContinuation.id("straw_golem")
             );
 
     public static final EntityType<StrawGolemEntity> STRAW_GOLEM =
