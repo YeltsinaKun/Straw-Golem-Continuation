@@ -23,6 +23,17 @@ public final class GolemEquipment {
             }
 
             ItemStack held = player.getItemInHand(hand);
+            if (held.is(Items.SHEARS)) {
+                if (!golem.tryRemoveStrawHat()) {
+                    return InteractionResult.PASS;
+                }
+
+                if (!player.isCreative()) {
+                    held.hurtAndBreak(1, player, hand);
+                }
+                return InteractionResult.CONSUME;
+            }
+
             if (held.is(Items.WHEAT)) {
                 if (!golem.repairWithWheat()) {
                     return InteractionResult.PASS;
