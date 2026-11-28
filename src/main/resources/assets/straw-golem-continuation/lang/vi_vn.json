@@ -1,0 +1,7 @@
+{
+  "entity.straw-golem-continuation.straw_golem": "Golem rơm",
+  "item.straw-golem-continuation.straw_hat": "Mũ rơm",
+  "message.straw-golem-continuation.golem_selected": "Đã chọn golem rơm. Giữ Shift và nhấp phải vào kho.",
+  "message.straw-golem-continuation.storage_assigned": "Đã chỉ định kho cho golem rơm.",
+  "itemGroup.straw-golem-continuation.straw_golem": "Golem rơm"
+}

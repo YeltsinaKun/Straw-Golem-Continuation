@@ -1,13 +1,11 @@
 package xubache.com.strawgolem.ai;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -16,14 +14,9 @@ import xubache.com.strawgolem.config.StrawGolemConfig;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 final class GolemDepositHelper {
-    private static final Map<ServerLevel, Map<BlockPos, Long>> CHEST_CLOSE_TIMES = new WeakHashMap<>();
-
     private GolemDepositHelper() {
     }
 
@@ -52,7 +45,8 @@ final class GolemDepositHelper {
                 }
                 for (var entry : chunk.getBlockEntities().entrySet()) {
                     BlockPos pos = entry.getKey();
-                    if (entry.getValue() instanceof Container
+                    var block = entry.getValue().getBlockState().getBlock();
+                    if ((block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL)
                             && Math.abs(pos.getX() - origin.getX()) <= horizontalRange
                             && Math.abs(pos.getY() - origin.getY()) <= verticalRange
                             && Math.abs(pos.getZ() - origin.getZ()) <= horizontalRange) {
@@ -182,36 +176,4 @@ final class GolemDepositHelper {
         return hit.getType() == HitResult.Type.MISS || hit.getBlockPos().equals(target);
     }
 
-    static void openChest(ServerLevel level, BlockPos pos) {
-        if (isLoaded(level, pos) && level.getBlockState(pos).getBlock() instanceof ChestBlock chest) {
-            level.blockEvent(pos, chest, 1, 1);
-            CHEST_CLOSE_TIMES.computeIfAbsent(level, ignored -> new HashMap<>())
-                    .put(pos, level.getGameTime() + 16);
-        }
-    }
-
-    static void registerChestEffects() {
-        ServerTickEvents.END_LEVEL_TICK.register(level -> {
-            Map<BlockPos, Long> pending = CHEST_CLOSE_TIMES.get(level);
-            if (pending == null) {
-                return;
-            }
-
-            pending.entrySet().removeIf(entry -> {
-                if (entry.getValue() > level.getGameTime()) {
-                    return false;
-                }
-
-                BlockPos pos = entry.getKey();
-                if (isLoaded(level, pos) && level.getBlockState(pos).getBlock() instanceof ChestBlock chest) {
-                    level.blockEvent(pos, chest, 1, 0);
-                }
-                return true;
-            });
-
-            if (pending.isEmpty()) {
-                CHEST_CLOSE_TIMES.remove(level);
-            }
-        });
-    }
 }

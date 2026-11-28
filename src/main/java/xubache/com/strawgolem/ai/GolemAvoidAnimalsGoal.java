@@ -8,6 +8,9 @@ import net.minecraft.world.phys.Vec3;
 import xubache.com.strawgolem.Entity.StrawGolemEntity;
 
 public final class GolemAvoidAnimalsGoal extends AvoidEntityGoal<PathfinderMob> {
+    private static final int CHECK_INTERVAL = 5;
+    private long nextCheckTick;
+
     public GolemAvoidAnimalsGoal(StrawGolemEntity golem) {
         super(golem, PathfinderMob.class, NibbleStrawGolemGoal.SEARCH_RANGE,
                 StrawGolemEntity.WALK_SPEED, StrawGolemEntity.RUN_SPEED,
@@ -16,6 +19,11 @@ public final class GolemAvoidAnimalsGoal extends AvoidEntityGoal<PathfinderMob> 
 
     @Override
     public boolean canUse() {
+        long now = this.mob.level().getGameTime();
+        if (now < this.nextCheckTick) {
+            return false;
+        }
+        this.nextCheckTick = now + CHECK_INTERVAL + (this.mob.getId() & 3);
         return super.canUse() && this.path.canReach();
     }
 

@@ -37,10 +37,12 @@ final class StrawGolemHarvestHelper {
         return getRipeCrop(level, pos) != null;
     }
 
+    static boolean canHarvest(ServerLevel level) {
+        return level.getGameRules().get(GameRules.MOB_GRIEFING);
+    }
+
     static void harvest(ServerLevel level, StrawGolemEntity golem, BlockPos pos) {
-        if (golem.level() != level || golem.hasCargo()
-                || !level.getGameRules().get(GameRules.MOB_GRIEFING)
-                || !level.getGameRules().get(GameRules.BLOCK_DROPS)) {
+        if (golem.level() != level || golem.hasCargo() || !canHarvest(level)) {
             return;
         }
 

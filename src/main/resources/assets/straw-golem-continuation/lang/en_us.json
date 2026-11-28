@@ -1,0 +1,7 @@
+{
+  "entity.straw-golem-continuation.straw_golem" :"Straw Golem",
+  "item.straw-golem-continuation.straw_hat": "Straw Hat",
+  "message.straw-golem-continuation.golem_selected": "Straw Golem selected. Sneak and right-click a container.",
+  "message.straw-golem-continuation.storage_assigned": "Storage assigned to the Straw Golem.",
+  "itemGroup.straw-golem-continuation.straw_golem": "Straw Golem"
+}

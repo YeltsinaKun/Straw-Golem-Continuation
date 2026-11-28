@@ -29,7 +29,7 @@ public final class ModItems {
                 BuiltInRegistries.CREATIVE_MODE_TAB,
                 StrawGolemRelaunched.id("straw_golem"),
                 FabricCreativeModeTab.builder()
-                        .title(Component.literal("STRAW GOLEM"))
+                        .title(Component.translatable("itemGroup.straw-golem-continuation.straw_golem"))
                         .icon(() -> new ItemStack(STRAW_HAT))
                         .displayItems((parameters, output) -> output.accept(STRAW_HAT))
                         .build()

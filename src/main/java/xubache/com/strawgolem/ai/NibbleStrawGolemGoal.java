@@ -18,6 +18,7 @@ import java.util.Set;
 
 public final class NibbleStrawGolemGoal extends Goal {
     static final float SEARCH_RANGE = 6.0F;
+    private static final int CHECK_INTERVAL = 10;
     private static final double APPROACH_SPEED = 1.0D;
     private static final float BITE_DAMAGE = 0.5F;
 
@@ -28,6 +29,7 @@ public final class NibbleStrawGolemGoal extends Goal {
     );
 
     private final PathfinderMob animal;
+    private long nextCheckTick;
     private StrawGolemEntity target;
     private Path approach;
 
@@ -60,6 +62,12 @@ public final class NibbleStrawGolemGoal extends Goal {
         if (!(this.animal.level() instanceof ServerLevel level)) {
             return false;
         }
+
+        long now = level.getGameTime();
+        if (now < this.nextCheckTick) {
+            return false;
+        }
+        this.nextCheckTick = now + CHECK_INTERVAL + (this.animal.getId() & 7);
 
         var candidates = level.getEntitiesOfClass(
                 StrawGolemEntity.class, this.animal.getBoundingBox().inflate(SEARCH_RANGE),

@@ -6,6 +6,7 @@ import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xubache.com.strawgolem.ai.GolemChestEffects;
 import xubache.com.strawgolem.ai.NibbleStrawGolemGoal;
 import xubache.com.strawgolem.config.StrawGolemConfig;
 import xubache.com.strawgolem.registry.ModEntities;
@@ -14,7 +15,7 @@ import xubache.com.strawgolem.interaction.GolemEquipment;
 import xubache.com.strawgolem.registry.ModItems;
 
 public class StrawGolemRelaunched implements ModInitializer {
-	public static final String MOD_ID = "straw-golem-relaunched";
+	public static final String MOD_ID = "straw-golem-continuation";
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -26,6 +27,7 @@ public class StrawGolemRelaunched implements ModInitializer {
 		StrawGolemConfig.load();
 		ModEntities.initialize();
 		ModItems.initialize();
+		GolemChestEffects.register();
 		GolemOrders.register();
 		GolemEquipment.register();
 		NibbleStrawGolemGoal.register();

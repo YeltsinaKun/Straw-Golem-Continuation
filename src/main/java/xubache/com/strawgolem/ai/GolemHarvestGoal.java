@@ -1,29 +1,37 @@
 package xubache.com.strawgolem.ai;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Blocks;
 import xubache.com.strawgolem.Entity.StrawGolemEntity;
 import xubache.com.strawgolem.config.StrawGolemConfig;
 
 import java.util.Comparator;
 import java.util.EnumSet;
-import java.util.PriorityQueue;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 public final class GolemHarvestGoal extends Goal {
 
     private static final double REACH_SQUARED = 4.0D;
+    private static final int MIN_FAILED_SCAN_DELAY = 20;
+    private static final int MAX_FAILED_SCAN_DELAY = 40;
+    private static final int MAX_PATH_ATTEMPTS = 4;
+    private static final int FAILED_PATH_TTL = 100;
     private final StrawGolemEntity golem;
+    private final Map<BlockPos, Long> failedUntil = new HashMap<>();
     private PriorityQueue<BlockPos> crops = new PriorityQueue<>();
     private BlockPos target;
     private Path targetPath;
+    private long nextScanTick;
 
     public GolemHarvestGoal(StrawGolemEntity golem) {
         this.golem = golem;
@@ -32,7 +40,14 @@ public final class GolemHarvestGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        if (this.golem.hasCargo() || !(this.golem.level() instanceof ServerLevel level)) {
+        if (this.golem.hasCargo() || !(this.golem.level() instanceof ServerLevel level)
+                || !StrawGolemHarvestHelper.canHarvest(level)) {
+            return false;
+        }
+
+        boolean needsScan = this.crops.isEmpty();
+        long now = level.getGameTime();
+        if (needsScan && now < this.nextScanTick) {
             return false;
         }
 
@@ -43,11 +58,14 @@ public final class GolemHarvestGoal extends Goal {
                 Comparator.comparingInt(origin::distManhattan)
         );
 
-        if (this.crops.isEmpty()) {
+        if (needsScan) {
+            this.failedUntil.values().removeIf(until -> until <= now);
             for (BlockPos pos : BlockPos.withinManhattan(
                     origin, horizontalRange, config.harvestScanVerticalRange, horizontalRange
             )) {
-                if (this.findReachablePath(level, pos) != null) {
+                if (isInTargetRange(origin, pos, horizontalRange, config.harvestTargetVerticalRange)
+                        && !this.failedUntil.containsKey(pos)
+                        && StrawGolemHarvestHelper.isHarvestable(level, pos)) {
                     ordered.add(pos.immutable());
                 }
             }
@@ -56,20 +74,39 @@ public final class GolemHarvestGoal extends Goal {
         }
         this.crops = ordered;
 
-        while (!this.crops.isEmpty()) {
+        int pathAttempts = 0;
+        while (pathAttempts < MAX_PATH_ATTEMPTS && !this.crops.isEmpty()) {
             BlockPos candidate = this.crops.remove();
             if (!isInTargetRange(
                     origin, candidate, horizontalRange, config.harvestTargetVerticalRange
-            )) {
+            ) || !StrawGolemHarvestHelper.isHarvestable(level, candidate)) {
                 continue;
             }
 
-            Path path = this.findReachablePath(level, candidate);
-            if (path != null) {
+            var state = level.getBlockState(candidate);
+            Path path;
+            if (state.is(Blocks.MELON) || state.is(Blocks.PUMPKIN)) {
+                Set<BlockPos> approaches = loadedApproaches(level, candidate);
+                if (approaches.isEmpty()) {
+                    continue;
+                }
+                path = this.golem.getNavigation().createPath(approaches, 0);
+            } else {
+                path = this.golem.getNavigation().createPath(
+                        candidate.getX() + 0.5D, candidate.getY(), candidate.getZ() + 0.5D, 0
+                );
+            }
+            pathAttempts++;
+            if (path != null && path.canReach()) {
                 this.target = candidate;
                 this.targetPath = path;
                 return true;
             }
+            this.failedUntil.put(candidate, now + FAILED_PATH_TTL);
+        }
+        if (this.crops.isEmpty()) {
+            int delayCount = MAX_FAILED_SCAN_DELAY - MIN_FAILED_SCAN_DELAY + 1;
+            this.nextScanTick = now + MIN_FAILED_SCAN_DELAY + Math.floorMod(this.golem.getId(), delayCount);
         }
         return false;
     }
@@ -85,32 +122,15 @@ public final class GolemHarvestGoal extends Goal {
                 && dx * dx + dz * dz <= (long) horizontalRange * horizontalRange;
     }
 
-    private Path findReachablePath(ServerLevel level, BlockPos pos) {
-        if (!StrawGolemHarvestHelper.isHarvestable(level, pos)) {
-            return null;
-        }
-
-        var state = level.getBlockState(pos);
-        Path path;
-        if (state.is(Blocks.MELON) || state.is(Blocks.PUMPKIN)) {
-            Set<BlockPos> approaches = new HashSet<>();
-            for (Direction direction : Direction.Plane.HORIZONTAL) {
-                BlockPos stand = pos.relative(direction);
-                if (level.getChunkSource().hasChunk(stand.getX() >> 4, stand.getZ() >> 4)) {
-                    approaches.add(stand);
-                }
+    private static Set<BlockPos> loadedApproaches(ServerLevel level, BlockPos pos) {
+        Set<BlockPos> approaches = new HashSet<>();
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockPos stand = pos.relative(direction);
+            if (level.getChunkSource().hasChunk(stand.getX() >> 4, stand.getZ() >> 4)) {
+                approaches.add(stand);
             }
-
-            if (approaches.isEmpty()) {
-                return null;
-            }
-            path = this.golem.getNavigation().createPath(approaches, 0);
-        } else {
-            path = this.golem.getNavigation().createPath(
-                    pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0
-            );
         }
-        return path != null && path.canReach() ? path : null;
+        return approaches;
     }
 
     @Override

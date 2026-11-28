@@ -339,10 +339,11 @@ public class StrawGolemEntity extends PathfinderMob {
 
     public int getTextureStage() {
         float health = this.getHealth();
-        if (health <= 2.0F) {
+        float maxHealth = this.getMaxHealth();
+        if (health <= maxHealth / 6.0F) {
             return LIFE_STAGE_DYING;
         }
-        return health <= 6.0F ? LIFE_STAGE_OLD : LIFE_STAGE_NORMAL;
+        return health <= maxHealth / 2.0F ? LIFE_STAGE_OLD : LIFE_STAGE_NORMAL;
     }
 
     public float getWalkBlend(float partialTick) {
@@ -523,15 +524,20 @@ public class StrawGolemEntity extends PathfinderMob {
     @Override
     protected void readAdditionalSaveData(ValueInput input) {
         super.readAdditionalSaveData(input);
+        StrawGolemConfig config = StrawGolemConfig.get();
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(config.attributes.maxHealth);
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(config.attributes.movementSpeed);
+
         this.lifeAgeTicks = Math.max(0L, input.getLongOr(LIFE_AGE_TAG, 0L));
         this.moistureTicks = Mth.clamp(
                 input.getInt(MOISTURE_TAG).orElse(0), 0, MAX_MOISTURE_TICKS
         );
-        long lifespan = StrawGolemConfig.get().getLifespanTicks();
+        long lifespan = config.getLifespanTicks();
+        float healthLimit = this.getMaxHealth();
         if (lifespan > 0 && this.lifeAgeTicks < lifespan) {
-            float remaining = this.getMaxHealth() - this.wornHealthPoints(this.lifeAgeTicks, lifespan);
-            this.setHealth(Math.min(this.getHealth(), remaining));
+            healthLimit -= this.wornHealthPoints(this.lifeAgeTicks, lifespan);
         }
+        this.setHealth(Math.min(this.getHealth(), healthLimit));
 
         this.entityData.set(HAS_STRAW_HAT, input.getBooleanOr(STRAW_HAT_TAG, false));
         this.depositStorage = input.read("DepositStorage", GlobalPos.CODEC).orElse(null);

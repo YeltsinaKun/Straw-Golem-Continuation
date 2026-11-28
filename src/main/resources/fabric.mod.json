@@ -1,18 +1,18 @@
 {
 	"schemaVersion": 1,
-	"id": "straw-golem-relaunched",
+	"id": "straw-golem-continuation",
 	"version": "${version}",
-	"name": "Straw Golem Continuolation",
+	"name": "Straw Golem Continuation",
 	"description": "Straw golem đã trở lại trên 26.1.2!",
 	"authors": [
 		"Xubache1407"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/YeltsinaKun/straw-golem-relaunched"
+		"homepage": "https://github.com/YeltsinaKun/Straw-Golem-Continuation",
+		"sources": "https://github.com/YeltsinaKun/Straw-Golem-Continuation"
 	},
 	"license": "AGPL-3.0-only",
-	"icon": "assets/straw-golem-relaunched/icon.png",
+	"icon": "assets/straw-golem-continuation/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -26,7 +26,7 @@
 		]
 	},
 	"mixins": [
-		"straw-golem-relaunched.mixins.json"
+		"straw-golem-continuation.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.20.1",

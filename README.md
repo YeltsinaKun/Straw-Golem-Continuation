@@ -1,14 +1,16 @@
-# Straw Golem Continuolation
+# Straw Golem Continuation
 
 Có hôm ra thăm ruộng, bạn sẽ thấy cả quả dưa hấu đang lững thững đi về phía rương. Nhìn xuống dưới một chút sẽ thấy chú golem rơm đang đội nó trên đầu. Cậu chàng này biết gặt lúa, trồng lại cà rốt, hái quả mọng và mang nông sản về cho bạn. Chỉ có điều, nếu định cho nó làm hàng xóm với mấy con bò thì nhớ dựng hàng rào nhé.
 
 Bản mod dành cho **Minecraft Java 26.1.2 trên Fabric**. Để chơi, cài Fabric Loader rồi bỏ Fabric API và file JAR của mod vào thư mục `mods/`.
 
+Mod ID hiện là `straw-golem-continuation`. World dùng bản có ID `straw-golem-relaunched` cần được sao lưu trước khi thử bản này. Golem và vật phẩm đã lưu với ID cũ cần chuyển ID riêng để bản mới đọc được.
+
 ## Đón golem về ruộng
 
 1. Đặt một **khối rơm** bên ruộng rồi đặt **bí ngô khắc** chạm vào khối rơm. Đặt trên đầu cho có dáng người rơm cũng được, gắn bên hông cũng được. Cả sáu mặt đều dùng được, miễn là bạn đặt bí ngô sau.
 2. Để trống tay chính, giữ **Shift** rồi nhấp phải vào golem. Vẫn để tay trống và giữ Shift, nhấp phải vào chiếc rương bạn muốn nó mang đồ về. Dùng thùng gỗ cũng được. Nhớ chừa lối cho đôi chân ngắn của nó đi tới.
-3. Thử cho nó một luống lúa mì, cà rốt, khoai tây hoặc củ dền đã chín. Khi hai tay còn trống, nó sẽ tự tìm cây để gặt. Đến lúc ôm đầy nông sản, nó quay về cất rồi mới ra ruộng làm tiếp.
+3. Thử cho nó một luống lúa mì, cà rốt, khoai tây hoặc củ dền đã chín. Khi tay chính trống, nó sẽ tự tìm cây để gặt. Hễ có nông sản trên tay sau một lần gặt, nó tìm chỗ cất ngay. Cất hết đồ trên tay rồi nó mới gặt tiếp.
 
 ## Gặt xong thì lấy gì trồng lại?
 

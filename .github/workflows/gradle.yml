@@ -1,4 +1,4 @@
-name: Build Straw Golem Relaunched
+name: Build Straw Golem Continuation
 
 on:
   push:
@@ -34,6 +34,6 @@ jobs:
       - name: Upload mod and sources JARs
         uses: actions/upload-artifact@v7
         with:
-          name: straw-golem-relaunched
+          name: straw-golem-continuation
           path: build/libs/*.jar
           if-no-files-found: error

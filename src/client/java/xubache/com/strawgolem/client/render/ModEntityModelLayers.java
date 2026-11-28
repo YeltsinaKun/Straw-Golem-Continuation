@@ -2,16 +2,13 @@ package xubache.com.strawgolem.client.render;
 
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.Identifier;
+import xubache.com.strawgolem.StrawGolemRelaunched;
 
 public class ModEntityModelLayers {
 
     public static final ModelLayerLocation STRAW_GOLEM =
             new ModelLayerLocation(
-                    Identifier.fromNamespaceAndPath(
-                            "straw-golem-relaunched",
-                            "straw_golem"
-                    ),
+                    StrawGolemRelaunched.id("straw_golem"),
                     "main"
             );
 

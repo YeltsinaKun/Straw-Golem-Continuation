@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "straw-golem-relaunched:item/straw_hat"
+    "layer0": "straw-golem-continuation:item/straw_hat"
   }
 }

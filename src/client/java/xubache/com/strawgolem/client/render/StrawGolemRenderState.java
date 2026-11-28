@@ -1,7 +1,6 @@
 package xubache.com.strawgolem.client.render;
 
 import net.minecraft.client.renderer.entity.state.HoldingEntityRenderState;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.world.entity.AnimationState;
 
 public class StrawGolemRenderState extends HoldingEntityRenderState {

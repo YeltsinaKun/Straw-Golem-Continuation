@@ -115,6 +115,11 @@ public final class StrawGolemConfig {
                     1024.0
             );
 
+            double movementSpeed = loaded.attributes.movementSpeed;
+            if (!Double.isFinite(movementSpeed) || movementSpeed <= 0.0 || movementSpeed > 1024.0) {
+                throw new IllegalArgumentException("movement_speed must be greater than 0 and at most 1024.0");
+            }
+
             validateRange(
                     "wander_max_distance",
                     loaded.attributes.wanderMaxDistance,
@@ -137,7 +142,7 @@ public final class StrawGolemConfig {
 
             LOGGER.error(
                     "Cannot load config at {}. Using defaults; "
-                    + "any exitsting config file is left unchanged.",
+                    + "any existing config file is left unchanged.",
                     path,
                     e
             );
@@ -152,7 +157,7 @@ public final class StrawGolemConfig {
     ) {
         if (!Double.isFinite(value) || value < min || value > max) {
             throw new IllegalArgumentException(
-                    name + "must be between " + min + " and " + max
+                    name + " must be between " + min + " and " + max
             );
         }
     }
