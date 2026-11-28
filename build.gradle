@@ -15,7 +15,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"straw-golem-relaunched" {
+		"straw-golem-continuation" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -25,7 +25,12 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
-		modId = "straw-golem-relaunched"
+		modId = "straw-golem-continuation"
+	}
+	configureTests {
+		createSourceSet = true
+		modId = "straw-golem-continuation-gametest"
+		enableClientGameTests = false
 	}
 }
 

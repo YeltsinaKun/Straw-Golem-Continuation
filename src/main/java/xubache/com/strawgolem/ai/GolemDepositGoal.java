@@ -133,7 +133,7 @@ public final class GolemDepositGoal extends Goal {
                 this.fail(level);
             } else {
                 this.lockedChest = new GlobalPos(level.dimension(), this.target);
-                GolemDepositHelper.openChest(level, this.target);
+                GolemChestEffects.openChest(level, this.target);
                 this.stop();
             }
             return;

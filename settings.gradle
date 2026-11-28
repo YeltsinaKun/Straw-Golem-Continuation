@@ -10,4 +10,4 @@ pluginManagement {
 }
 
 // Sets the base name of the Gradle artifacts.
-rootProject.name = 'straw-golem-continuolation'
+rootProject.name = 'straw-golem-continuation'
