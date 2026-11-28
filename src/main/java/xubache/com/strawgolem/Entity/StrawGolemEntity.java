@@ -31,6 +31,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import xubache.com.strawgolem.ai.*;
 import xubache.com.strawgolem.config.StrawGolemConfig;
+import xubache.com.strawgolem.registry.ModItems;
 import net.minecraft.core.GlobalPos;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -405,6 +406,19 @@ public class StrawGolemEntity extends PathfinderMob {
         }
 
         this.entityData.set(HAS_STRAW_HAT, true);
+        return true;
+    }
+
+    public boolean tryRemoveStrawHat() {
+        if (!(this.level() instanceof ServerLevel level) || !this.isAlive() || !this.hasStrawHat()) {
+            return false;
+        }
+
+        if (!this.dropStack(level, new ItemStack(ModItems.STRAW_HAT), DEFAULT_PICKUP_DELAY)) {
+            return false;
+        }
+
+        this.entityData.set(HAS_STRAW_HAT, false);
         return true;
     }
 
