@@ -14,7 +14,7 @@ import xubache.com.strawgolem.ai.GolemOrders;
 import xubache.com.strawgolem.interaction.GolemEquipment;
 import xubache.com.strawgolem.registry.ModItems;
 
-public class StrawGolemRelaunched implements ModInitializer {
+public class StrawGolemContinuation implements ModInitializer {
 	public static final String MOD_ID = "straw-golem-continuation";
 
 	// This logger is used to write text to the console and the log file.

@@ -6,7 +6,7 @@ import xubache.com.strawgolem.client.render.ModEntityModelLayers;
 import xubache.com.strawgolem.client.render.StrawGolemRenderer;
 import xubache.com.strawgolem.registry.ModEntities;
 
-public class StrawGolemRelaunchedClient implements ClientModInitializer {
+public class StrawGolemContinuationClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ModEntityModelLayers.registerModelLayer();

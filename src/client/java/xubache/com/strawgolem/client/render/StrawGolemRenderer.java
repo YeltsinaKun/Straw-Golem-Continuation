@@ -12,16 +12,16 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import xubache.com.strawgolem.Entity.StrawGolemEntity;
-import xubache.com.strawgolem.StrawGolemRelaunched;
+import xubache.com.strawgolem.StrawGolemContinuation;
 
 public class StrawGolemRenderer extends MobRenderer<
         StrawGolemEntity,
         StrawGolemRenderState,
         StrawGolemModel> {
 
-    private static final Identifier TEXTURE = StrawGolemRelaunched.id("textures/straw_golem.png");
-    private static final Identifier OLD_TEXTURE = StrawGolemRelaunched.id("textures/straw_golem_old.png");
-    private static final Identifier DYING_TEXTURE = StrawGolemRelaunched.id("textures/straw_golem_dying.png");
+    private static final Identifier TEXTURE = StrawGolemContinuation.id("textures/straw_golem.png");
+    private static final Identifier OLD_TEXTURE = StrawGolemContinuation.id("textures/straw_golem_old.png");
+    private static final Identifier DYING_TEXTURE = StrawGolemContinuation.id("textures/straw_golem_dying.png");
 
     public StrawGolemRenderer(EntityRendererProvider.Context context) {
         super(

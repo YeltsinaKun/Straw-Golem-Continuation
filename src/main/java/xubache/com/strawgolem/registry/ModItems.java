@@ -8,11 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import xubache.com.strawgolem.StrawGolemRelaunched;
+import xubache.com.strawgolem.StrawGolemContinuation;
 
 public final class ModItems {
     private static final ResourceKey<Item> STRAW_HAT_KEY =
-            ResourceKey.create(Registries.ITEM, StrawGolemRelaunched.id("straw_hat"));
+            ResourceKey.create(Registries.ITEM, StrawGolemContinuation.id("straw_hat"));
 
     public static final Item STRAW_HAT = Registry.register(
             BuiltInRegistries.ITEM,
@@ -27,7 +27,7 @@ public final class ModItems {
 
         Registry.register(
                 BuiltInRegistries.CREATIVE_MODE_TAB,
-                StrawGolemRelaunched.id("straw_golem"),
+                StrawGolemContinuation.id("straw_golem"),
                 FabricCreativeModeTab.builder()
                         .title(Component.translatable("itemGroup.straw-golem-continuation.straw_golem"))
                         .icon(() -> new ItemStack(STRAW_HAT))
